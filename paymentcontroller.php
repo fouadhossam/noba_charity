@@ -4,6 +4,7 @@ require_once 'Donator.php';
 
 session_start();
 $model = new PaymentModel();
+$donator = new Donator();
 
 if (isset($_SESSION['userid'])) {
     if (isset($_GET['action'])) {
@@ -33,7 +34,7 @@ if (isset($_SESSION['userid'])) {
                 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $methodID = intval($_SESSION['method']);
                     try {
-                        $paymentStrategy = $model->getPaymentStrategy($methodID);           
+                        $paymentStrategy = $donator->getPaymentStrategy($methodID);           
                         if ($paymentStrategy->validate($_POST['options'],$_SESSION['amount'])) {
                             $donationID = $model->createDonation($_SESSION['donationTypeID'],$_SESSION['quantity'],$_SESSION['amount']);
                             $_SESSION['DonationID'] = $donationID;
