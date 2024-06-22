@@ -70,19 +70,6 @@ class PaymentModel {
         }
     }
 
-    public function getPaymentStrategy($methodID) {
-        switch ($methodID) {
-            case 3:
-                return new payByAmazonPay();
-            case 4:
-                return new payByPayPal();
-            case 5: 
-                return new payByPayMob(); 
-            case 6: 
-                return new payByCreditCard();           
-            default:
-                throw new Exception("Unsupported payment method");
-        }
-    }
+
 }
 ?>
